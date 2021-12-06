@@ -25,8 +25,12 @@ public class MergeArrays {
     public static int[] ascend(int[] array) {
 
         boolean flag = true;
+
         while (flag) {
             flag = false;
+
+            // Looping through array and swapping neighbouring elements if necessary.
+            // While loop repeats until no further swapping occurs.
             for (int i = 1; i < array.length; i++) {
                 if (array[i] < array[i - 1]) {
                     int temp = array[i];
@@ -41,5 +45,22 @@ public class MergeArrays {
 
     public static int[] ascend(int[][] array) {
         return ascend(merge(array));
+    }
+
+    public static int[] descend(int[] array) {
+        int[] ascendedArray = ascend(array);
+        int[] result = new int[array.length];
+        int count = array.length;
+
+        // Simply flips the order of the ascended array
+        for (int num : ascendedArray) {
+            result[count - 1] = num;
+            count--;
+        }
+        return result;
+    }
+
+    public static int[] descend(int[][] array) {
+        return descend(merge(array));
     }
 }
