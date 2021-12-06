@@ -63,4 +63,40 @@ public class MergeArrays {
     public static int[] descend(int[][] array) {
         return descend(merge(array));
     }
+
+    public static int[] removeDuplicates(int[] array) {
+        int[] tempArray = ascend(array);
+        int count = 0;
+        int currentNum = 0;
+        int previousNum;
+
+        // Calculating the size of the array once duplicates are removed
+        for (int i = 1; i < tempArray.length; i++) {
+            currentNum = tempArray[i];
+            previousNum = tempArray[i - 1];
+            if (currentNum == previousNum) {
+                count++;
+            }
+        }
+        int[] result = new int[array.length - count];
+
+        // Adding a single copy of each number that appears in the given array to result array
+        int idx = 0;
+        for (int i = 1; i < tempArray.length; i++) {
+            currentNum = tempArray[i];
+            previousNum = tempArray[i - 1];
+            if (currentNum != previousNum) {
+                result[idx] = previousNum;
+                idx++;
+            }
+        }
+        // Including the very last number since it doesn't have any following numbers to compare to
+        result[array.length - count - 1] = currentNum;
+
+        return result;
+    }
+
+    public static int[] removeDuplicates(int[][] array) {
+        return removeDuplicates(merge(array));
+    }
 }
