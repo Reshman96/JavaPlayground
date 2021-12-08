@@ -30,4 +30,26 @@ public class BinaryTreeTest {
         Assertions.assertEquals(true, tree.findElement(43));
         Assertions.assertEquals(false, tree.findElement(42));
     }
+
+    @Test
+    public void getLeftChildTest() {
+        Assertions.assertEquals(14, tree.getLeftChild(17));
+    }
+
+    @Test
+    public void getRightChildTest() {
+        Assertions.assertEquals(43, tree.getRightChild(27));
+    }
+
+    @Test
+    void getSortedTreeAscTest() {
+        Assertions.assertArrayEquals(new int[]{14, 17, 19, 25, 26, 27, 43}, tree.getSortedTreeAsc());
+    }
+
+    @Test
+    void getSortedTreeDescTest() {
+        Assertions.assertArrayEquals(new int[]{43, 27, 26, 25, 19, 17, 14}, tree.getSortedTreeDesc());
+    }
+
+
 }

@@ -1,12 +1,17 @@
 package challenges.week2.binaryTree;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 public class BinaryTree implements iBinaryTree {
     private final Node root;
     private Node currentElement;
+    private Set<Integer> set = new TreeSet<>();
 
     public BinaryTree(Node root) {
         this.root = root;
         this.currentElement = root;
+        this.set.add(root.getNumericValue());
     }
 
     @Override
@@ -32,6 +37,7 @@ public class BinaryTree implements iBinaryTree {
 
     @Override
     public void addElement(int element) {
+        set.add(element);
         currentElement = root;
         while (element != currentElement.getNumericValue()) {
             if (element > currentElement.getNumericValue()) {
@@ -83,23 +89,41 @@ public class BinaryTree implements iBinaryTree {
         return currentElement.getNumericValue() == value;
     }
 
-//    @Override
-//    public int getLeftChild(int element) throws ChildNotFoundException {
-//        return 0;
-//    }
-//
-//    @Override
-//    public int getRightChild(int element) throws ChildNotFoundException {
-//        return 0;
-//    }
+    @Override
+    public int getLeftChild(int element) {
+        if (findElement(element)) {
+            return currentElement.getLeftNode().getNumericValue();
+        }
+        return -1;
+    }
+
+    @Override
+    public int getRightChild(int element) {
+        if (findElement(element)) {
+            return currentElement.getRightNode().getNumericValue();
+        }
+        return -1;
+    }
 
     @Override
     public int[] getSortedTreeAsc() {
-        return new int[0];
+        int[] result = new int[getNumberOfElements()];
+        int i = 0;
+        for (int num : set) {
+            result[i] = num;
+            i++;
+        }
+        return result;
     }
 
     @Override
     public int[] getSortedTreeDesc() {
-        return new int[0];
+        int[] result = new int[getNumberOfElements()];
+        int i = getNumberOfElements() - 1;
+        for (int num : set) {
+            result[i] = num;
+            i--;
+        }
+        return result;
     }
 }
