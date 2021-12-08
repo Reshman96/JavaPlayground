@@ -83,23 +83,65 @@ public class BinaryTree implements iBinaryTree {
         return currentElement.getNumericValue() == value;
     }
 
-//    @Override
-//    public int getLeftChild(int element) throws ChildNotFoundException {
-//        return 0;
-//    }
-//
-//    @Override
-//    public int getRightChild(int element) throws ChildNotFoundException {
-//        return 0;
-//    }
+    @Override
+    public int getLeftChild(int element) {
+        if (findElement(element)) {
+            return currentElement.getLeftNode().getNumericValue();
+        }
+        return -1;
+    }
+
+    @Override
+    public int getRightChild(int element) {
+        if (findElement(element)) {
+            return currentElement.getRightNode().getNumericValue();
+        }
+        return -1;
+    }
 
     @Override
     public int[] getSortedTreeAsc() {
-        return new int[0];
+        int[] result = new int[getNumberOfElements()];
+        currentElement = root;
+        while (getLeftChild(currentElement.getNumericValue()) != -1 || getRightChild(currentElement.getNumericValue()) != -1) {
+            if(getLeftChild(currentElement.getNumericValue()) != -1) {
+
+            }
+        }
+        return result;
+    }
+
+    // Gets any immediate child branch's int value as an int array, if they exist
+    public int[] getSortedTreeAscBranches(Node currentElement) {
+        int leftChild = -9999;
+        int rightChild = -9999;
+        int count = 0;
+        if (getLeftChild(currentElement.getNumericValue()) != -1) {
+            leftChild = getLeftChild(currentElement.getNumericValue());
+            count++;
+        }
+        if (getRightChild(currentElement.getNumericValue()) != -1) {
+            rightChild = getRightChild(currentElement.getNumericValue());
+            count++;
+        }
+        int[] result = new int[count];
+        if (leftChild != -9999) {
+            result[0] = leftChild;
+        } else if (rightChild != -9999) {
+            result[0] = rightChild;
+        }
+        if (count == 2) {
+            result[1] = rightChild;
+        }
+        return result;
     }
 
     @Override
     public int[] getSortedTreeDesc() {
         return new int[0];
+    }
+
+    public Node getRoot() {
+        return root;
     }
 }

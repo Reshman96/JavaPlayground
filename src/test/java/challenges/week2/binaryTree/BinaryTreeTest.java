@@ -2,6 +2,7 @@ package challenges.week2.binaryTree;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class BinaryTreeTest {
@@ -30,4 +31,29 @@ public class BinaryTreeTest {
         Assertions.assertEquals(true, tree.findElement(43));
         Assertions.assertEquals(false, tree.findElement(42));
     }
+
+    @Test
+    public void getLeftChildTest() {
+        Assertions.assertEquals(14, tree.getLeftChild(17));
+    }
+
+    @Test
+    public void getRightChildTest() {
+        Assertions.assertEquals(43, tree.getRightChild(27));
+    }
+
+    @Test
+    @Disabled ("This is a private method. Uncomment and change method to public to test")
+    public void getSortedTreeAscBranchesTest() {
+//        Assertions.assertArrayEquals(new int[] {17, 27}, tree.getSortedTreeAscBranches(tree.getRoot()));
+    }
+
+    @Test
+    void getSortedTreeAsc() {
+
+    }
+
+
+
+
 }
