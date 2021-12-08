@@ -1,12 +1,17 @@
 package challenges.week2.binaryTree;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 public class BinaryTree implements iBinaryTree {
     private final Node root;
     private Node currentElement;
+    private Set<Integer> set = new TreeSet<>();
 
     public BinaryTree(Node root) {
         this.root = root;
         this.currentElement = root;
+        this.set.add(root.getNumericValue());
     }
 
     @Override
@@ -32,6 +37,7 @@ public class BinaryTree implements iBinaryTree {
 
     @Override
     public void addElement(int element) {
+        set.add(element);
         currentElement = root;
         while (element != currentElement.getNumericValue()) {
             if (element > currentElement.getNumericValue()) {
@@ -102,46 +108,22 @@ public class BinaryTree implements iBinaryTree {
     @Override
     public int[] getSortedTreeAsc() {
         int[] result = new int[getNumberOfElements()];
-        currentElement = root;
-        while (getLeftChild(currentElement.getNumericValue()) != -1 || getRightChild(currentElement.getNumericValue()) != -1) {
-            if(getLeftChild(currentElement.getNumericValue()) != -1) {
-
-            }
-        }
-        return result;
-    }
-
-    // Gets any immediate child branch's int value as an int array, if they exist
-    public int[] getSortedTreeAscBranches(Node currentElement) {
-        int leftChild = -9999;
-        int rightChild = -9999;
-        int count = 0;
-        if (getLeftChild(currentElement.getNumericValue()) != -1) {
-            leftChild = getLeftChild(currentElement.getNumericValue());
-            count++;
-        }
-        if (getRightChild(currentElement.getNumericValue()) != -1) {
-            rightChild = getRightChild(currentElement.getNumericValue());
-            count++;
-        }
-        int[] result = new int[count];
-        if (leftChild != -9999) {
-            result[0] = leftChild;
-        } else if (rightChild != -9999) {
-            result[0] = rightChild;
-        }
-        if (count == 2) {
-            result[1] = rightChild;
+        int i = 0;
+        for (int num : set) {
+            result[i] = num;
+            i++;
         }
         return result;
     }
 
     @Override
     public int[] getSortedTreeDesc() {
-        return new int[0];
-    }
-
-    public Node getRoot() {
-        return root;
+        int[] result = new int[getNumberOfElements()];
+        int i = getNumberOfElements() - 1;
+        for (int num : set) {
+            result[i] = num;
+            i--;
+        }
+        return result;
     }
 }
