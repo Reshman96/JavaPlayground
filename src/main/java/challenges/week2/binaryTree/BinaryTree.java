@@ -90,17 +90,25 @@ public class BinaryTree implements iBinaryTree {
     }
 
     @Override
-    public int getLeftChild(int element) {
+    public int getLeftChild(int element) throws ChildNotFoundException {
         if (findElement(element)) {
-            return currentElement.getLeftNode().getNumericValue();
+            try {
+                return currentElement.getLeftNode().getNumericValue();
+            } catch (Exception e) {
+                throw new ChildNotFoundException();
+            }
         }
         return -1;
     }
 
     @Override
-    public int getRightChild(int element) {
+    public int getRightChild(int element) throws ChildNotFoundException {
         if (findElement(element)) {
-            return currentElement.getRightNode().getNumericValue();
+            try {
+                return currentElement.getRightNode().getNumericValue();
+            } catch (Exception e) {
+                throw new ChildNotFoundException();
+            }
         }
         return -1;
     }
