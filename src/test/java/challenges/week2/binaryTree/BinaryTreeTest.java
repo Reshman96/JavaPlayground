@@ -26,19 +26,33 @@ public class BinaryTreeTest {
     }
 
     @Test
-    public void findElementTest() {
-        Assertions.assertEquals(true, tree.findElement(43));
-        Assertions.assertEquals(false, tree.findElement(42));
+    public void findRealElementTest() {
+        Assertions.assertTrue(tree.findElement(43));
     }
 
     @Test
-    public void getLeftChildTest() {
-        Assertions.assertEquals(14, tree.getLeftChild(17));
+    void dontFindFakeElementTest() {
+        Assertions.assertFalse(tree.findElement(42));
     }
 
     @Test
-    public void getRightChildTest() {
+    public void getLeftChildTest() throws ChildNotFoundException {
+            Assertions.assertEquals(14, tree.getLeftChild(17));
+    }
+
+    @Test
+    public void getNonExistingLeftChildTest() {
+            Assertions.assertThrows(ChildNotFoundException.class, () -> tree.getLeftChild(14));
+    }
+
+    @Test
+    public void getRightChildTest() throws ChildNotFoundException {
         Assertions.assertEquals(43, tree.getRightChild(27));
+    }
+
+    @Test
+    public void getNonExistingRightChildTest() {
+        Assertions.assertThrows(ChildNotFoundException.class, () -> tree.getRightChild(43));
     }
 
     @Test
@@ -50,6 +64,4 @@ public class BinaryTreeTest {
     void getSortedTreeDescTest() {
         Assertions.assertArrayEquals(new int[]{43, 27, 26, 25, 19, 17, 14}, tree.getSortedTreeDesc());
     }
-
-
 }
