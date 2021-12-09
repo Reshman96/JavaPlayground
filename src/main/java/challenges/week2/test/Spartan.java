@@ -46,6 +46,16 @@ public class Spartan {
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
+
+    @Override
+    public String toString() {
+        return "Spartan{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", course='" + course + '\'' +
+                ", startDate=" + startDate +
+                '}';
+    }
 }
 
 
