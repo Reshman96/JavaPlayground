@@ -48,7 +48,7 @@ public class TwasTheNightBeforeChristmasFileReader {
     private static int countWords(String word, String filepath) {
         int count = 0;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filepath))) {
-            while(bufferedReader.readLine() != null) {
+            while (bufferedReader.readLine() != null) {
                 for (String wordInFile : bufferedReader.readLine().split(" ")) {
                     wordInFile = wordInFile.toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
                     if (word.equals(wordInFile)) {
