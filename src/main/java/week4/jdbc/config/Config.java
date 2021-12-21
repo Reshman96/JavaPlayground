@@ -11,7 +11,7 @@ public class Config {
 
     static {
         try {
-            config.load(new BufferedReader(new FileReader("src/main/java/challenges.week4.jdbc/config/config.properties")));
+            config.load(new BufferedReader(new FileReader("src/main/java/week4/jdbc/config/config.properties")));
         } catch (IOException e) {
             e.printStackTrace();
         }
