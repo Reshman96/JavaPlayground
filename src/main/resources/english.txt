@@ -12408,7 +12408,7 @@ cordons
 cords
 corduroy
 corduroys
-core
+week1.core
 cored
 coreless
 corer
