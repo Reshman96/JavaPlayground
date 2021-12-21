@@ -2,3 +2,4 @@
 /.idea/
 /src/main/resources/write_example.txt
 /src/main/resources/nbc_parse.txt
+/src/main/java/week4/jdbc/config/config.properties
