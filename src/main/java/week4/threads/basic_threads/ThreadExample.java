@@ -11,7 +11,22 @@ public class ThreadExample {
     }
 
     public static void main(String[] args) {
-        System.out.println(Thread.currentThread().getName());
-        System.out.println(Thread.currentThread().getId());
+        System.out.println(Thread.currentThread().getName() + " " + Thread.currentThread().getId());
+
+        Thread ourThread = new Thread(new ExampleThread());
+
+//        System.out.println(ourThread.getName());
+//        System.out.println(ourThread.getId());
+//        ourThread.run();
+
+        for (int i = 0; i < 10; i++) {
+            try {
+                System.out.println(i);
+                Thread.sleep(500);
+            } catch(InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }
